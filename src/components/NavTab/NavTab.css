@@ -1,0 +1,30 @@
+.nav__links {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+.nav__link {
+  list-style: none;
+  min-width: 96px;
+  background-color: #303030;
+  margin: 0 10px 0 0;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  padding: 10px 0;
+}
+.nav__link:last-child {
+  margin: 0;
+}
+
+@media (max-width: 320px) {
+  .nav__link {
+    min-width: 82px;
+    font-size: 10px;
+    line-height: 16px;
+    margin: 0 6px 0 0;
+  }
+}
