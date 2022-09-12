@@ -5,6 +5,7 @@ import '../Header/Header.css';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
+import Footer from '../Footer/Footer';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             element={<SavedMovies/>}>
           </Route>
         </Routes>
+        <Footer/>
       </div>
     </div>
   );
