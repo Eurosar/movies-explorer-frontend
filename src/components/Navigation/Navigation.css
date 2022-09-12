@@ -102,6 +102,7 @@
     opacity: 0;
     transition: opacity .3s ease;
   }
+
   .header__navigation.active {
     transition: opacity .3s ease;
     opacity: 1;

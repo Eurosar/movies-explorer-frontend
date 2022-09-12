@@ -35,7 +35,7 @@ const Techs = () => {
     },
   ];
   return (
-    <section className="techs">
+    <section id="tech" className="techs">
       <MainSectionTitle title="Технологии"/>
       <h3 className="techs__title">7 технологий</h3>
       <p className="techs__subtitle">На курсе веб-разработки мы освоили технологии, которые применили в дипломном
