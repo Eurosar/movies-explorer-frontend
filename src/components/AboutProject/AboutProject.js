@@ -5,7 +5,7 @@ import MainSectionTitle from '../MainSectionTitle/MainSectionTitle';
 const AboutProject = () => {
   return (
     <section id="about-project" className="about-project">
-      <MainSectionTitle title="О проекте" />
+      <MainSectionTitle title="О проекте"/>
       <ul className="about-project__content">
         <li className="about-project__stage">
           <h3 className="stage__title">Дипломный проект включал 5 этапов</h3>
