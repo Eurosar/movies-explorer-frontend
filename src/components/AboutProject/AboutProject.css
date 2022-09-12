@@ -1,0 +1,138 @@
+.about-project {
+  padding: 110px 70px;
+  margin: 0;
+}
+
+.about-project__content {
+  margin: 70px 0 0 0;
+  padding: 0;
+  display: flex;
+}
+
+.about-project__stage {
+  list-style: none;
+  margin: 0 40px 110px 0;
+  padding: 0;
+}
+
+.about-project__stage:last-child {
+  margin: 0;
+}
+
+.stage__title {
+  padding: 0 0 26px 0;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+}
+
+.stage__text {
+  font-size: 14px;
+  line-height: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.about-project__diagram {
+  display: grid;
+  grid-template-columns: minmax(0, 228px) 1fr;
+}
+
+.diagram__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.diagram__time {
+  width: 100%;
+  font-size: 14px;
+  line-height: 36px;
+  text-align: center;
+  background-color: #303030;
+  margin: 0 0 14px 0;
+}
+
+.diagram__about {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #8B8B8B;
+}
+
+.diagram__time_color_green {
+  background-color: #3DDC84;
+  color: #000000;
+}
+
+@media (max-width: 768px) {
+
+  .about-project {
+    padding: 90px 50px;
+    margin: 0;
+  }
+
+  .about-project__stage {
+    margin: 0 30px 93px 0;
+  }
+
+  .stage__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-project__diagram {
+    display: grid;
+    grid-template-columns: minmax(0, 140px) 1fr;
+  }
+
+}
+
+@media (max-width: 430px) {
+
+  .about-project {
+    padding: 70px 18px;
+    margin: 0;
+  }
+  .about-project__content {
+    margin: 60px 0;
+    flex-wrap: wrap;
+  }
+  .about-project__stage {
+    list-style: none;
+    margin: 0 0 56px 0;
+    padding: 0;
+  }
+  .about-project__diagram {
+    display: grid;
+    grid-template-columns: minmax(0, 100px) 1fr;
+  }
+  .diagram__time {
+    margin: 0 0 10px 0;
+  }
+}
+
+@media (max-width: 320px) {
+  .stage__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .stage__text {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .diagram__time {
+    font-size: 11px;
+    line-height: 35px;
+    margin: 0 0 10px 0;
+  }
+
+  .diagram__about {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}

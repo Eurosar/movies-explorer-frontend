@@ -1,18 +1,14 @@
 import React from 'react';
 import './NavTab.css';
 
-const NavTab = () => {
+const NavTab = ({ items, blockNameStyles }) => {
   return (
-    <ul className="nav__links">
-      <a  className="nav__link link" href="#1">
-        <li>О проекте</li>
-      </a>
-      <a  className="nav__link link" href="#2">
-        <li>Технологии</li>
-      </a>
-      <a  className="nav__link link" href="#3">
-        <li>Студент</li>
-      </a>
+    <ul className={`nav__items nav__items_style_${blockNameStyles}`}>
+      {items.map(item =>
+        <li className={`nav__item item__${item.style}`}>
+          {item.content}
+        </li>
+      )}
     </ul>
   );
 };

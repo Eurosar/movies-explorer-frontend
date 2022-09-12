@@ -2,6 +2,8 @@ import React from 'react';
 import Header from '../Header/Header';
 import { Link } from 'react-router-dom';
 import Promo from '../Promo/Promo';
+import AboutProject from '../AboutProject/AboutProject';
+import Techs from '../Techs/Techs';
 
 const Main = () => {
   return (
@@ -16,6 +18,8 @@ const Main = () => {
         </ul>
       </Header>
       <Promo />
+      <AboutProject />
+      <Techs />
     </>
 
   );
