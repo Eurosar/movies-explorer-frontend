@@ -53,4 +53,12 @@
   .header {
     padding: 0 14px;
   }
+  .auth {
+    font-size: 10px;
+    line-height: 16px;
+    margin: 0 0 0 2px;
+  }
+  .auth__link {
+    padding: 5px 12px;
+  }
 }
