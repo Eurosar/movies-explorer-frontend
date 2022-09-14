@@ -5,8 +5,8 @@ import '../Header/Header.css';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
-import Footer from '../Footer/Footer';
 import { moviesData, savedMoviesData } from '../../utils/utils';
+import Profile from '../Profile/Profile';
 
 function App() {
 
@@ -52,8 +52,16 @@ function App() {
             />}
           >
           </Route>
+          <Route
+            path="/account"
+            element={<Profile
+              navigationActive={navigationActive}
+              navigationButtonClass={navigationButtonClass}
+              openNavigation={openNavigation}
+            />}
+          >
+          </Route>
         </Routes>
-        <Footer/>
       </div>
     </div>
   );

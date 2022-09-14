@@ -17,16 +17,16 @@ const Navigation = ({ navigationActive, navigationButtonClass, isOpen }) => {
         <ul className="navigation__list">
           {navigationActive &&
             <li className="navigation__item">
-              <NavLink to="/" className={classActive}>Главная</NavLink>
+              <NavLink onClick={isOpen} to="/" className={classActive}>Главная</NavLink>
             </li>}
           <li className="navigation__item">
-            <NavLink to="/movies" className={classActive}>Фильмы</NavLink>
+            <NavLink onClick={isOpen} to="/movies" className={classActive}>Фильмы</NavLink>
           </li>
           <li className="navigation__item">
-            <NavLink to="/saved-movies" className={classActive}>Сохранённые фильмы</NavLink>
+            <NavLink onClick={isOpen} to="/saved-movies" className={classActive}>Сохранённые фильмы</NavLink>
           </li>
         </ul>
-        <Link className="account__link" to="/account">Аккаунт<img className="account__image" src={account}
+        <Link onClick={isOpen} className="account__link" to="/account">Аккаунт<img className="account__image" src={account}
                                                                   alt="Аккаунт"/></Link>
       </nav>
     </>
