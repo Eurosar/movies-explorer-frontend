@@ -1,27 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Navigation.css';
 import { Link, NavLink } from 'react-router-dom';
 import account from '../../images/account.svg';
 
 const classActive = ({ isActive }) => `link ${isActive ? 'navigation__link_active' : ''}`;
 
-const Navigation = () => {
-
-  const [ navigationActive, setNavigationActive ] = useState(false);
-  const [ navigationButtonClass, setNavigationButtonClass ] = useState('header__navigation-button');
-
-  const openNavigation = () => {
-    if (!navigationActive) {
-      setNavigationButtonClass('header__navigation-button header__navigation-button_clicked');
-    } else {
-      setNavigationButtonClass('header__navigation-button');
-    }
-    setNavigationActive(!navigationActive);
-  };
+const Navigation = ({ navigationActive, navigationButtonClass, isOpen }) => {
 
   return (
     <>
-      <div className={navigationButtonClass} onClick={openNavigation}>
+      <div className={navigationButtonClass} onClick={isOpen}>
         <span className="header__navigation-button_span"/>
       </div>
       {navigationActive && <div className="navigation_bg"/>}

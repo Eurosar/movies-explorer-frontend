@@ -38,6 +38,12 @@
   bottom: 0;
 }
 
+.header__navigation-button_clicked.header__navigation-button {
+  position: fixed;
+  top: 26px;
+  right: 30px;
+}
+
 .header__navigation-button_clicked.header__navigation-button::before {
   transform: rotate(405deg);
   top: 10px;
@@ -92,11 +98,11 @@
 @media (max-width: 768px) {
   .header__navigation {
     background-color: #202020;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     width: 67.709%;
-    height: 100%;
+    height: 100vh;
     flex-direction: column;
     align-items: center;
     opacity: 0;
