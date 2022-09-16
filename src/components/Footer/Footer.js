@@ -9,8 +9,9 @@ const Footer = () => {
         <div className="footer__copyright">&copy; 2020</div>
         <nav className="footer__navigation">
           <ul className="footer__links">
-            <li><a href="#" className="footer__link link">Яндекс.Практикум</a></li>
-            <li><a href="#" className="footer__link link">Github</a></li>
+            <li><a href="https://practicum.yandex.ru" className="footer__link link" target="_blank">Яндекс.Практикум</a>
+            </li>
+            <li><a href="https://github.com" className="footer__link link" target="_blank">Github</a></li>
           </ul>
         </nav>
       </div>

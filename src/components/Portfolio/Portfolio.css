@@ -40,6 +40,11 @@
   margin: 0;
   padding: 0;
   gap: 10px;
+  transition: opacity ease .3s;
+}
+
+.portfolio__link:hover {
+  opacity: .6;
 }
 
 .portfolio__link-image {

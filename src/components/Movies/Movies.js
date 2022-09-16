@@ -18,7 +18,10 @@ const Movies = ({ navigationActive, navigationButtonClass, openNavigation, movie
         />
       </Header>
       <SearchForm/>
-      <MoviesCardList movies={movies}/>
+      <MoviesCardList
+        movies={movies}
+        hideFavorite={false}
+      />
       <button className="movies__pagination-button" type="button">Еще</button>
       <Footer/>
     </>

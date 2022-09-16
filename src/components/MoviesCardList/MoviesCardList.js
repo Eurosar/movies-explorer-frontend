@@ -2,7 +2,7 @@ import React from 'react';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-const MoviesCardList = ({ movies }) => {
+const MoviesCardList = ({ movies, hideFavorite }) => {
 
   return (
     <section className="movies">
@@ -12,6 +12,7 @@ const MoviesCardList = ({ movies }) => {
             <MoviesCard
               key={data.name}
               {...data}
+              hideFavorite={hideFavorite}
             />))
         }
       </ul>

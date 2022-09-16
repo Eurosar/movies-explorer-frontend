@@ -1,0 +1,146 @@
+.auth {
+  margin: 0 30px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: 586px;
+  height: 100%;
+}
+
+.auth__logo {
+  width: 38px;
+  height: 38px;
+}
+
+.auth__title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  margin: 40px 0;
+  padding: 0;
+}
+
+.auth__form {
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 396px;
+  flex: 1;
+}
+
+.auth__inputs {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.auth__label {
+  cursor: inherit;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #8B8B8B;
+}
+
+.auth__input {
+  background-color: #202020;
+  color: #FFFFFF;
+  font-size: 14px;
+  line-height: 24px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #424242;
+  margin: 0;
+  padding: 5px 0 10px 0;
+  transition: all ease .3s;
+}
+
+.auth__input:focus {
+  border-bottom: 1px solid #FFFFFF;
+}
+
+.auth__input_password {
+  color: #EE3465;
+}
+
+.auth__input-error {
+  display: block;
+  min-height: 18px;
+  margin: 6px 0 0 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #EE3465;
+}
+
+.auth__button {
+  /* margin: 134px 0 0 0; */
+  padding: 0;
+  background-color: #4285F4;
+  color: #FFFFFF;
+  min-height: 45px;
+  border: none;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  cursor: pointer;
+  transition: opacity .3s;
+}
+
+.auth__button:hover {
+  opacity: .8;
+}
+
+.auth__sign {
+  margin: 15px 0 0 0;
+  padding: 0;
+}
+
+.sign__text {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #8B8B8B;
+}
+
+.sign__link {
+  margin: 0 0 0 6px;
+  padding: 0;
+  color: #4285F4;
+  transition: opacity .3s;
+}
+
+.sign__link:hover {
+  opacity: .6;
+}
+
+@media (max-width: 320px) {
+  .auth {
+    max-height: 694px;
+  }
+
+  .auth__logo {
+    margin: 0 auto;
+  }
+
+  .auth__title {
+    margin: 50px auto 80px;
+  }
+
+  .auth__input {
+    line-height: 17px;
+  }
+
+  .sign__text {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

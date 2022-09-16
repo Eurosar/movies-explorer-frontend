@@ -30,6 +30,11 @@
   display: block;
   line-height: 36px;
   min-width: 96px;
+  transition: opacity ease .3s;
+}
+
+.link__main-promo:hover {
+  opacity: .6;
 }
 
 @media (max-width: 768px) {

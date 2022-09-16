@@ -22,7 +22,7 @@ const AboutMe = () => {
                                                  веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной
                                                  работы.
           </div>
-          <div className="about-me__github">Github</div>
+          <a className="about-me__github link" href="https://github.com/Eurosar" target="_blank">Github</a>
         </div>
         <img className="about-me__photo" src={student} alt="Сергей"/>
       </div>

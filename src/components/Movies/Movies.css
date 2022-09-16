@@ -11,6 +11,11 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
+  transition: opacity ease .3s;
+}
+
+.movies__pagination-button:hover {
+  opacity: .8;
 }
 
 @media (max-width: 440px) {

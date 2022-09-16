@@ -7,6 +7,7 @@ import Footer from '../Footer/Footer';
 
 
 const SavedMovies = ({ navigationActive, navigationButtonClass, openNavigation, movies }) => {
+
   return (
     <>
       <Header>
@@ -17,7 +18,10 @@ const SavedMovies = ({ navigationActive, navigationButtonClass, openNavigation, 
         />
       </Header>
       <SearchForm/>
-      <MoviesCardList movies={movies}/>
+      <MoviesCardList
+        movies={movies}
+        hideFavorite={true}
+      />
       <Footer/>
     </>
 

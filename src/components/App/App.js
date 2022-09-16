@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import '../Header/Header.css';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
@@ -26,6 +28,16 @@ function App() {
     <div className="App">
       <div className="page">
         <Routes>
+          <Route
+            path="/signup"
+            element={<Register/>}
+          >
+          </Route>
+          <Route
+            path="/signin"
+            element={<Login/>}
+          >
+          </Route>
           <Route
             exact path="/"
             element={<Main/>}
@@ -53,7 +65,7 @@ function App() {
           >
           </Route>
           <Route
-            path="/account"
+            path="/profile"
             element={<Profile
               navigationActive={navigationActive}
               navigationButtonClass={navigationButtonClass}
