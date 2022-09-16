@@ -1,8 +1,9 @@
 import React from 'react';
 import './Login.css';
 import AuthForm from '../AuthForm/AuthForm';
+import Input from '../Input/Input';
 
-const Login = () => {
+const Login = ({ register, onSubmit, errors }) => {
   return (
     <div className="login">
       <AuthForm
@@ -12,33 +13,32 @@ const Login = () => {
         signText="Ещё не зарегистрированы?"
         linkText="Регистрация"
         linkTo="/signup"
+        onSubmit={onSubmit}
       >
-        <label className="auth__label" htmlFor="email">Email</label>
-        <input
-          id="email"
-          className="auth__input auth__input_email"
+        <Input
+          register={register}
+          label="Email"
+          labelClassName="auth__label"
+          inputClassName="auth__input"
           type="email"
           name="email"
-          // value={email}
-          // onChange={onChange}
-          placeholder=" "
           minLength="2"
           maxLength="40"
-          required/>
-        <span className="auth__input-error email-input-error"></span>
-        <label className="auth__label" htmlFor="password">Пароль</label>
-        <input
-          id="password"
-          className="auth__input auth__input_password"
+          required
+        />
+        <span className="auth__input-error">{errors.email?.message}</span>
+        <Input
+          register={register}
+          label="Пароль"
+          labelClassName="auth__label"
+          inputClassName= {errors.password ? "auth__input auth__input_color_red" : "auth__input"}
           type="password"
           name="password"
-          // value={password}
-          // onChange={onChange}
-          placeholder=" "
           minLength="2"
           maxLength="200"
-          required/>
-        <span className="auth__input-error password-input-error">Что то пошло не так...</span>
+          required
+        />
+        <span className="auth__input-error">{errors.password?.message}</span>
       </AuthForm>
     </div>
   );

@@ -1,0 +1,45 @@
+.auth__label {
+  cursor: inherit;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #8B8B8B;
+}
+
+.auth__input {
+  background-color: #202020;
+  color: #FFFFFF;
+  font-size: 14px;
+  line-height: 24px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #424242;
+  margin: 0;
+  padding: 5px 0 10px 0;
+  transition: all ease .3s;
+}
+
+.auth__input:focus {
+  border-bottom: 1px solid #FFFFFF;
+}
+
+.auth__input_color_red {
+  color: #EE3465;
+}
+
+.auth__input-error {
+  display: block;
+  min-height: 18px;
+  margin: 6px 0 0 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #EE3465;
+}
+
+@media (max-width: 320px) {
+  .auth__input {
+    line-height: 17px;
+  }
+}

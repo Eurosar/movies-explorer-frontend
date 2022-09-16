@@ -10,11 +10,24 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import { moviesData, savedMoviesData } from '../../utils/utils';
 import Profile from '../Profile/Profile';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import { useForm } from 'react-hook-form';
 
 function App() {
 
   const [ navigationActive, setNavigationActive ] = useState(false);
   const [ navigationButtonClass, setNavigationButtonClass ] = useState('header__navigation-button');
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    mode: 'onBlur'
+  });
+
+  const onSubmit = (data) => {
+    alert(JSON.stringify(data));
+  };
 
   const openNavigation = () => {
     if (!navigationActive) {
@@ -31,11 +44,19 @@ function App() {
         <Routes>
           <Route
             path="/signup"
-            element={<Register/>}
+            element={<Register
+              register={register}
+              onSubmit={handleSubmit(onSubmit)}
+              errors={errors}
+            />}
           />
           <Route
             path="/signin"
-            element={<Login/>}
+            element={<Login
+              register={register}
+              onSubmit={handleSubmit(onSubmit)}
+              errors={errors}
+            />}
           />
           <Route
             exact path="/"

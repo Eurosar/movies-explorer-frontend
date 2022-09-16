@@ -10,8 +10,8 @@ const AboutMe = () => {
       <MainSectionTitle title="Студент"/>
       <div className="about-me__container">
         <div className="about-me__content">
-          <h3 className="about-me__name">Сергей</h3>
-          <div className="about-me__about">Фронтенд-разработчик, 35 лет</div>
+          <h3 className="about-me__name">Виталий</h3>
+          <div className="about-me__about">Фронтенд-разработчик, 30 лет</div>
           <div className="about-me__description">Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня
                                                  есть
                                                  жена
