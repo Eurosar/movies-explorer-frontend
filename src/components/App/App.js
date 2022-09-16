@@ -9,6 +9,7 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import { moviesData, savedMoviesData } from '../../utils/utils';
 import Profile from '../Profile/Profile';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 function App() {
 
@@ -31,18 +32,15 @@ function App() {
           <Route
             path="/signup"
             element={<Register/>}
-          >
-          </Route>
+          />
           <Route
             path="/signin"
             element={<Login/>}
-          >
-          </Route>
+          />
           <Route
             exact path="/"
             element={<Main/>}
-          >
-          </Route>
+          />
           <Route
             path="/movies"
             element={
@@ -52,31 +50,38 @@ function App() {
                 openNavigation={openNavigation}
                 movies={moviesData}
               />
-            }>
-          </Route>
+            }
+          />
           <Route
             path="/saved-movies"
-            element={<SavedMovies
-              navigationActive={navigationActive}
-              navigationButtonClass={navigationButtonClass}
-              openNavigation={openNavigation}
-              movies={savedMoviesData}
-            />}
-          >
-          </Route>
+            element={
+              <SavedMovies
+                navigationActive={navigationActive}
+                navigationButtonClass={navigationButtonClass}
+                openNavigation={openNavigation}
+                movies={savedMoviesData}
+              />
+            }
+          />
           <Route
             path="/profile"
-            element={<Profile
-              navigationActive={navigationActive}
-              navigationButtonClass={navigationButtonClass}
-              openNavigation={openNavigation}
-            />}
-          >
-          </Route>
+            element={
+              <Profile
+                navigationActive={navigationActive}
+                navigationButtonClass={navigationButtonClass}
+                openNavigation={openNavigation}
+              />
+            }
+          />
+          <Route
+            path="/not-found"
+            element={<NotFoundPage/>}
+          />
         </Routes>
       </div>
     </div>
-  );
+  )
+    ;
 }
 
 export default App;
