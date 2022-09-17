@@ -1,0 +1,98 @@
+.movie {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  background-color: #222222;
+  border-radius: 6px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+}
+
+.movie__image {
+  width: 100%;
+  height: 203px;
+  object-fit: cover;
+  border-radius: 6px 6px 0 0;
+}
+
+.movie__container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 16px;
+  padding: 0;
+}
+
+.movie__content {
+  margin: 0 12px 0 0;
+  padding: 0;
+}
+
+.movie__title {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  margin: 16px 0 17px;
+  padding: 0;
+}
+
+.movie__duration {
+  color: #8B8B8B;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  margin: 0 0 16px 0;
+  padding: 0;
+}
+
+.movie__favorite {
+  width: 30px;
+  height: 30px;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background: transparent url("../../images/save-disabled.svg") no-repeat center;
+  transition: all .3s;
+  cursor: pointer;
+  margin: 9px 0 0 0;
+  padding: 0;
+}
+
+.movie__favorite:hover,
+.movie__favorite_active:hover {
+  scale: 1.5;
+}
+
+.movie__favorite_active {
+  background: transparent url("../../images/save.svg") no-repeat center;
+}
+
+.movie__button_delete {
+  background: transparent url("../../images/cross.svg") no-repeat center;
+  transition: all .3s;
+  cursor: pointer;
+  margin: 9px 0 0 0;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  border: none;
+  font: inherit;
+  color: inherit;
+  opacity: 0;
+}
+
+.movie:hover .movie__button_delete {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .movie__container {
+    margin: 0 14px;
+  }
+
+  .movie__title {
+    margin: 14px 0 15px;
+  }
+
+  .movie__duration {
+    margin: 0 0 14px 0;
+  }
+}
