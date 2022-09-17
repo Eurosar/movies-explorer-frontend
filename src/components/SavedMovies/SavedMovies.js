@@ -17,11 +17,13 @@ const SavedMovies = ({ navigationActive, navigationButtonClass, openNavigation, 
           isOpen={openNavigation}
         />
       </Header>
-      <SearchForm/>
-      <MoviesCardList
-        movies={movies}
-        hideFavorite={true}
-      />
+      <main className="content">
+        <SearchForm/>
+        <MoviesCardList
+          movies={movies}
+          hideFavorite={true}
+        />
+      </main>
       <Footer/>
     </>
 

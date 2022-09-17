@@ -22,6 +22,12 @@
   padding: 0;
 }
 
+.content {
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
 .link {
   color: #FFFFFF;
   text-decoration: none;

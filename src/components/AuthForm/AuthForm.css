@@ -7,6 +7,10 @@
   height: 100%;
 }
 
+.auth__link {
+  max-width: 38px;
+}
+
 .auth__logo {
   width: 38px;
   height: 38px;
@@ -38,7 +42,6 @@
 }
 
 .auth__button {
-  /* margin: 134px 0 0 0; */
   padding: 0;
   background-color: #4285F4;
   color: #FFFFFF;
@@ -87,7 +90,7 @@
     max-height: 694px;
   }
 
-  .auth__logo {
+  .auth__link {
     margin: 0 auto;
   }
 

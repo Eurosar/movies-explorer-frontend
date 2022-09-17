@@ -17,7 +17,7 @@ function AuthForm(
 
   return (
     <div className="auth">
-      <Link to="/"><img className="auth__logo" src={logo} alt="Логотип"/></Link>
+      <Link className="auth__link link" to="/"><img className="auth__logo" src={logo} alt="Логотип"/></Link>
       <h1 className="auth__title">{title}</h1>
       <form name={name} className={`auth__form form-${name}`} onSubmit={onSubmit} noValidate>
         <div className="auth__inputs">

@@ -4,7 +4,7 @@ import Header from '../Header/Header';
 import Navigation from '../Navigation/Navigation';
 import { Link } from 'react-router-dom';
 
-const Profile = ({navigationActive, navigationButtonClass,openNavigation}) => {
+const Profile = ({ navigationActive, navigationButtonClass, openNavigation }) => {
   return (
     <>
       <Header>
@@ -24,8 +24,8 @@ const Profile = ({navigationActive, navigationButtonClass,openNavigation}) => {
             <p className="profile__item-text">E-mail</p>
             <p className="profile__item-text">pochta@yandex.ru</p></li>
         </ul>
-          <button className="profile__button" type="button">Редактировать</button>
-          <Link to="/sign-in" className="profile__link link">Выйти из аккаунта</Link>
+        <button className="profile__button" type="button">Редактировать</button>
+        <Link to="/sign-in" className="profile__link link">Выйти из аккаунта</Link>
       </section>
     </>
   );

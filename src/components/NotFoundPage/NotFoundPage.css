@@ -5,6 +5,7 @@
   flex-direction: column;
   align-items: center;
 }
+
 .not-found-page__title {
   margin: 0;
   padding: 0;
@@ -12,6 +13,7 @@
   font-size: 140px;
   line-height: 169px;
 }
+
 .not-found-page__subtitle {
   margin: 5px 0 184px;
   padding: 0;
@@ -19,6 +21,7 @@
   font-size: 16px;
   line-height: 19px;
 }
+
 .not-found-page__link {
   margin: 0;
   padding: 0;
@@ -38,17 +41,20 @@
   .not-found-page {
     padding: 329px 0 30px;
   }
+
   .not-found-page__title {
     font-weight: 400;
     font-size: 80px;
     line-height: 97px;
   }
+
   .not-found-page__subtitle {
     margin: 10px 0 284px;
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;
   }
+
   .not-found-page__link {
     font-weight: 400;
     font-size: 12px;

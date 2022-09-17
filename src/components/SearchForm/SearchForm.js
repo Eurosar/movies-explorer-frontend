@@ -22,7 +22,8 @@ const SearchForm = () => {
           className={isChecked ? 'switch__checkbox switch__checkbox_checked' : 'switch__checkbox'}
           onChange={handleToggle}
           type="checkbox"
-          id="switch"/>
+          id="switch"
+          required/>
         <label htmlFor="switch" className="switch__title">Короткометражки</label>
       </div>
     </section>
