@@ -1,6 +1,4 @@
-// export const BASE_URL = 'https://api.eurosar2movies.nomoredomains.sbs';
-export const BASE_URL = 'http://localhost:3005';
-
+export const BASE_URL = 'https://api.eurosar2movies.nomoredomains.sbs';
 
 /**
  * Проверяем ответ с сервера на ошибки
