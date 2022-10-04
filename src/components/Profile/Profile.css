@@ -16,6 +16,11 @@
   text-align: center;
 }
 
+.profile__form {
+  display: flex;
+  flex-direction: column;
+}
+
 .profile__list {
   list-style: none;
   margin: 123px 30px 220px;
@@ -30,13 +35,23 @@
   margin: 0;
   padding: 16px 0 17px;
   width: 100%;
+  gap: 10px;
 }
 
 .profile__item:last-child {
   border-bottom: none;
 }
 
-.profile__item-text {
+.profile__item_input {
+  text-align: end;
+  background: none;
+  /* outline: none; */
+  color: #ffffff;
+  border: none;
+  flex: 1 1 auto;
+}
+
+.profile__item_text {
   margin: 0;
   padding: 0;
   font-weight: 500;
@@ -59,6 +74,12 @@
 .profile__button:hover {
   opacity: .6;
 }
+
+.profile__button:disabled {
+  cursor: default;
+  opacity: .2;
+}
+
 
 .profile__link {
   color: #EE3465;

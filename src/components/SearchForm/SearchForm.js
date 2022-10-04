@@ -1,19 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import './SearchForm.css';
+import { useForm } from 'react-hook-form';
 
-const SearchForm = () => {
+const SearchForm = ({ isChecked, onSubmit, handleToggle, searchValue }) => {
 
-  const [ isChecked, setIsChecked ] = useState(false);
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm({
+    mode: 'onSubmit'
+  });
 
-  const handleToggle = () => {
-    setIsChecked(!isChecked);
-  };
+  useEffect(() => {
+    setValue('search', searchValue);
+  }, [ searchValue ]);
 
   return (
     <section className="search-form">
-      <form name="search" className="search-form__form">
+      <form name="search" className="search-form__form" onSubmit={handleSubmit(onSubmit)}>
         <label className="search-form__label">
-          <input className="search-form__input" type="text" placeholder="Фильм"/>
+          <input
+            id="search"
+            className="search-form__input"
+            type="text"
+            placeholder="Фильм"
+            {...register('search', {
+              required: {
+                value: true,
+                message: 'Нужно ввести ключевое слово'
+              },
+            })}/>
+          <span className="search-form__error">{errors.search?.message}</span>
         </label>
         <button className="search-form__button" type="submit">Найти</button>
       </form>
@@ -23,11 +37,11 @@ const SearchForm = () => {
           onChange={handleToggle}
           type="checkbox"
           id="switch"
+          checked={isChecked}
           required/>
         <label htmlFor="switch" className="switch__title">Короткометражки</label>
       </div>
-    </section>
-  );
+    </section>);
 };
 
 export default SearchForm;

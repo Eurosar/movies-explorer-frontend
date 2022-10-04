@@ -1,8 +1,8 @@
 import React from 'react';
-import './Input.css';
+import '../Input/Input.css';
 import { useFormContext } from 'react-hook-form';
 
-const Input = (
+const NameInput = (
   {
     label,
     name,
@@ -34,6 +34,10 @@ const Input = (
           maxLength: {
             value: maxLength,
             message: `Максимальное количество символов ${maxLength}`
+          },
+          pattern: {
+            value: /^([а-яё\s-]+|[a-z\s-]+)$/iu,
+            message: 'Имя должно содержать только латиницу, кириллицу, пробел или дефис'
           }
         })
         }
@@ -42,5 +46,5 @@ const Input = (
   );
 };
 
-export default Input;
+export default NameInput;
 

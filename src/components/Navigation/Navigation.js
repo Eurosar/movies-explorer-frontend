@@ -2,10 +2,13 @@ import React from 'react';
 import './Navigation.css';
 import { Link, NavLink } from 'react-router-dom';
 import account from '../../images/account.svg';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 const classActive = ({ isActive }) => `link ${isActive ? 'navigation__link_active' : ''}`;
 
-const Navigation = ({ navigationActive, navigationButtonClass, isOpen }) => {
+const Navigation = () => {
+
+  const { navigationActive, navigationButtonClass, isOpen } = useCurrentUser();
 
   return (
     <>

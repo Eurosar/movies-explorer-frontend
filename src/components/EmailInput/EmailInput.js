@@ -1,5 +1,5 @@
 import React from 'react';
-import './Input.css';
+import '../Input/Input.css';
 import { useFormContext } from 'react-hook-form';
 
 const Input = (
@@ -34,6 +34,10 @@ const Input = (
           maxLength: {
             value: maxLength,
             message: `Максимальное количество символов ${maxLength}`
+          },
+          pattern: {
+            value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+            message: 'Некорректный формат почты'
           }
         })
         }
