@@ -5,28 +5,20 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import Preloader from '../Preloader/Preloader';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
-
+import { DURATION_OF_SHORT_MOVIES } from '../../utils/constants';
 
 const SavedMovies = () => {
 
   const { favoriteMovies, onRenderLoading, isLoading } = useCurrentUser();
 
   const [ myCards, setMyCards ] = useState([]);
-  const [ isCheckedSwitchBySavedMovies, setIsCheckedSwitchBySavedMovies ] = useState(false);
-  const [ searchFavoriteMoviesValue, setSearchFavoriteMoviesValue ] = useState();
 
-  /**
-   * Функция переключения свича короткометражек
-   */
-  const handleToggle = () => {
-    setIsCheckedSwitchBySavedMovies(isCheckedSwitch => !isCheckedSwitch);
-    localStorage.setItem('switchBySavedMovies', JSON.stringify(!isCheckedSwitchBySavedMovies));
-    if (!isCheckedSwitchBySavedMovies) {
-      setMyCards(myCards.filter(card => card.duration < 40));
-    } else {
-      setMyCards(favoriteMovies);
-    }
-  };
+  const [ isCheckedSwitchBySavedMovies, setIsCheckedSwitchBySavedMovies ] = useState(false);
+  const [ searchFavoriteMoviesValue, setSearchFavoriteMoviesValue ] = useState('');
+
+  function shortMovies(movie) {
+    return movie.duration < DURATION_OF_SHORT_MOVIES;
+  }
 
   /**
    * Функция поиска фильмов
@@ -38,12 +30,11 @@ const SavedMovies = () => {
       return favoriteMovies.nameRU.toLowerCase().includes(data.search.toLowerCase());
     }
 
-    function shortMovies(movie) {
-      return movie.duration < 40;
-    }
-
     onRenderLoading(true);
     let searchResult = favoriteMovies.filter(filterMovies);
+    if (searchResult.length) {
+      localStorage.setItem('favoriteMovies', JSON.stringify(searchResult));
+    }
     if (isCheckedSwitchBySavedMovies) {
       searchResult = searchResult.filter(shortMovies);
     }
@@ -62,8 +53,16 @@ const SavedMovies = () => {
       <main className="content">
         <SearchForm
           isChecked={isCheckedSwitchBySavedMovies}
+          setIsChecked={setIsCheckedSwitchBySavedMovies}
+          searchValue={searchFavoriteMoviesValue}
+          setSearchValue={setSearchFavoriteMoviesValue}
           onSubmit={handleSearch}
-          handleToggle={handleToggle}
+          movies={favoriteMovies}
+          cards={myCards}
+          setCards={setMyCards}
+          moviesLocalStorage="favoriteMovies"
+          searchValueLocalStorage="searchFavoriteMoviesValue"
+          savedMoviesPage
         />
         {myCards.length ?
           <MoviesCardList

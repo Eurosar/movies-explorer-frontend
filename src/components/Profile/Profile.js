@@ -4,11 +4,12 @@ import Header from '../Header/Header';
 import { Link } from 'react-router-dom';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import UseFormProfile from '../UseFormProfile/UseFormProfile';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
 
 const Profile = () => {
 
-  const { currentUser, signOut } = useCurrentUser();
+  const { currentUser, signOut, isInfoTooltipOpen, isSuccess, onClose } = useCurrentUser();
 
   return (
     <>
@@ -18,6 +19,12 @@ const Profile = () => {
         <UseFormProfile profileValues={currentUser}/>
         <Link to="/" className="profile__link link" onClick={signOut}>Выйти из аккаунта</Link>
       </section>
+      <InfoTooltip
+        isOpen={isInfoTooltipOpen}
+        isSuccess={isSuccess}
+        onClose={onClose}
+        toolTipText={isSuccess ? 'Данные успешно изменились!' : 'Что-то пошло не так! Попробуйте ещё раз.'}
+      />
     </>
   );
 };

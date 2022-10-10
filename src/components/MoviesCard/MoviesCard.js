@@ -28,10 +28,8 @@ const MoviesCard = ({ hideFavorite, ...movie }) => {
   function handleCardFavorite() {
     if (!favoriteMovie) {
       saveMovie(movie);
-      console.log('save');
     } else {
       deleteMovie(favoriteMovie);
-      console.log('delete');
     }
   }
 
@@ -53,7 +51,9 @@ const MoviesCard = ({ hideFavorite, ...movie }) => {
 
   return (
     <li className="movie">
-      <img className="movie__image" src={movie.image} alt="Фильм"/>
+      <a href={movie.trailerLink} target="_blank">
+        <img className="movie__image" src={movie.image} alt={movie.nameRU}/>
+      </a>
       <div className="movie__container">
         <div className="movie__content">
           <h2 className="movie__title">{movie.nameRU}</h2>

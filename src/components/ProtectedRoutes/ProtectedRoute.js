@@ -1,5 +1,5 @@
 import React from 'react';
-import {Outlet, Navigate} from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 /**
@@ -7,15 +7,12 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
  * @returns {JSX.Element}
  * @constructor
  */
+
 const ProtectedRoute = () => {
 
   const { loggedIn } = useCurrentUser();
 
-  if (!loggedIn) {
-    return <Navigate to="/" replace />;
-  }
-
-  return <Outlet />;
+  return loggedIn ? <Outlet/> : <Navigate to="/"/>;
 };
 
 export default ProtectedRoute;

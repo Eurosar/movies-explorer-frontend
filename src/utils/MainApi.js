@@ -1,4 +1,5 @@
-export const BASE_URL = 'https://api.eurosar2movies.nomoredomains.sbs';
+// export const BASE_URL = 'https://api.eurosar2movies.nomoredomains.sbs';
+export const BASE_URL = 'http://localhost:3005'
 
 /**
  * Проверяем ответ с сервера на ошибки
@@ -87,15 +88,13 @@ export const changeUserInfo = (data) => {
 
 /**
  * Функция верификации JWT
- * @param token
  * @returns {Promise<Response>}
  */
-export const verifyToken = (token) => {
+export const verifyToken = () => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
     },
     credentials: 'include',
   })

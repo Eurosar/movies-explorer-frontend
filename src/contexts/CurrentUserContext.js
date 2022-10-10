@@ -28,6 +28,12 @@ export const CurrentUserProvider = ({ children }) => {
   const [ movies, setMovies ] = useState([]);
   const [ favoriteMovies, setFavoriteMovies ] = useState([]);
   const [ isLoading, setIsLoading ] = useState(false);
+  const [ changeValue, setChangeValue ] = useState('');
+  const [ isSuccess, setIsSuccess ] = useState(true);
+  const [ isInfoTooltipOpen, setIsInfoTooltipOpen ] = useState(false);
+  const [ isTokenChecked, setIsTokenChecked ] = useState(false);
+  const [ isInfoTooltipErrorOpen, setIsInfoTooltipErrorOpen ] = useState(false);
+  const [ error, setError ] = useState('');
 
   /**
    * Регистрируем пользователя
@@ -43,6 +49,8 @@ export const CurrentUserProvider = ({ children }) => {
       })
       .catch((err) => {
         console.log(err);
+        setIsInfoTooltipErrorOpen(true);
+        setError(`${err}`);
       })
       .finally(() => {
         renderLoading(false);
@@ -59,12 +67,14 @@ export const CurrentUserProvider = ({ children }) => {
       .then((data) => {
         if (data.token) {
           setLoggedIn(true);
-          localStorage.setItem('jwt', data.token);
           navigate('/movies');
         }
       })
       .catch((err) => {
         console.log(err);
+        setIsInfoTooltipErrorOpen(true);
+        setError(`${err}`);
+
       })
       .finally(() => {
         renderLoading(false);
@@ -102,15 +112,17 @@ export const CurrentUserProvider = ({ children }) => {
    * Проверим наличие JWT
    */
   function checkToken() {
-    const token = localStorage.getItem('jwt');
-    if (token) {
-      verifyToken(token)
-        .then((res) => {
-          setCurrentUser(res);
-          setLoggedIn(true);
-        })
-        .catch(err => console.log(err));
-    }
+    verifyToken()
+      .then((res) => {
+        setCurrentUser(res);
+        setLoggedIn(true);
+        setIsTokenChecked(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsTokenChecked(true);
+        signOutUser();
+      });
   }
 
   /**
@@ -125,13 +137,9 @@ export const CurrentUserProvider = ({ children }) => {
     setNavigationActive(!navigationActive);
   }
 
-  /**
-   * Отфильтруем фильмы
-   * @param movie
-   * @returns {boolean}
-   */
-  function filterMyMovies(movie) {
-    return movie.owner === currentUser._id;
+  function closeAllPopups() {
+    setIsInfoTooltipOpen(false);
+    setIsInfoTooltipErrorOpen(false);
   }
 
   /**
@@ -143,7 +151,11 @@ export const CurrentUserProvider = ({ children }) => {
       .then((res) => {
         setFavoriteMovies([ ...favoriteMovies, res ]);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setIsInfoTooltipErrorOpen(true);
+        setError(`${err}`);
+      });
   }
 
   /**
@@ -158,16 +170,18 @@ export const CurrentUserProvider = ({ children }) => {
         );
         setFavoriteMovies(updateFavoriteMovies);
       })
-      .catch(err => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setIsInfoTooltipErrorOpen(true);
+        setError(`${err}`);
+      });
   }
 
   // Блок useEffects
 
-  // useEffect(() => {
-  //   if (loggedIn) {
-  //     getFavoriteMovies();
-  //   }
-  // }, [loggedIn]);
+  useEffect(() => {
+    checkToken();
+  }, []);
 
   useEffect(() => {
     if (loggedIn) {
@@ -175,15 +189,23 @@ export const CurrentUserProvider = ({ children }) => {
         .then((userData) => {
           setCurrentUser(userData);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [ loggedIn ]);
 
   useEffect(() => {
-    checkToken();
-  }, []);
 
-  useEffect(() => {
+    /**
+     * Отфильтруем фильмы
+     * @param movie
+     * @returns {boolean}
+     */
+    function filterMyMovies(movie) {
+      return movie.owner === currentUser._id;
+    }
+
     if (loggedIn && currentUser) {
       renderLoading(true);
       Promise.all([ moviesApi.getAllMovies(), getMyMovies() ])
@@ -194,13 +216,24 @@ export const CurrentUserProvider = ({ children }) => {
           const updatedMoviesData = beatFilms.map((movie) => {
             return ({
               ...movie,
-              thumbnail: `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`,
-              image: `https://api.nomoreparties.co${movie.image.url}`,
-              movieId: movie.id
+              country: movie.country ? movie.country : 'none',
+              director: movie.director ? movie.director : 'none',
+              duration: movie.duration ? movie.duration : 0,
+              year: movie.year ? movie.year : 'none',
+              description: movie.description ? movie.description : 'none',
+              image: movie.image ? `https://api.nomoreparties.co${movie.image.url}` : 'none',
+              trailerLink: typeof movie.trailerLink === 'string' && movie.trailerLink.slice(0, 4) === 'http' ? movie.trailerLink : 'https://youtube.com',
+              thumbnail: movie.image
+                ? `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`
+                : 'none',
+              movieId: movie.id,
+              nameRU: movie.nameRU ? movie.nameRU : 'none',
+              nameEN: movie.nameEN ? movie.nameEN : 'none'
             });
           });
           setMovies(updatedMoviesData);
           const myFilteredMovies = myMovies.filter(filterMyMovies);
+          localStorage.setItem('favoriteMovies', JSON.stringify(myFilteredMovies));
           setFavoriteMovies(myFilteredMovies);
         })
         .catch(err => {
@@ -215,20 +248,19 @@ export const CurrentUserProvider = ({ children }) => {
   return (
     <CurrentUserContext.Provider
       value={{
-        navigationActive,
-        setNavigationActive,
-        navigationButtonClass,
-        setNavigationButtonClass,
-        movies,
-        setMovies,
-        isLoading,
-        setIsLoading,
-        currentUser,
-        setCurrentUser,
-        favoriteMovies,
-        setFavoriteMovies,
-        loggedIn,
-        setLoggedIn,
+        navigationActive, setNavigationActive,
+        navigationButtonClass, setNavigationButtonClass,
+        movies, setMovies,
+        isLoading, setIsLoading,
+        currentUser, setCurrentUser,
+        favoriteMovies, setFavoriteMovies,
+        changeValue, setChangeValue,
+        loggedIn, setLoggedIn,
+        isSuccess, setIsSuccess,
+        isInfoTooltipOpen, setIsInfoTooltipOpen,
+        isTokenChecked, setIsTokenChecked,
+        isInfoTooltipErrorOpen, setIsInfoTooltipErrorOpen,
+        error, setError,
         onRegister: handleRegister,
         onLogin: handleLogin,
         onRenderLoading: renderLoading,
@@ -236,6 +268,7 @@ export const CurrentUserProvider = ({ children }) => {
         signOut: signOutUser,
         saveMovie: handleSaveMovie,
         deleteMovie: handleDeleteMovie,
+        onClose: closeAllPopups
       }}>
       {children}
     </CurrentUserContext.Provider>

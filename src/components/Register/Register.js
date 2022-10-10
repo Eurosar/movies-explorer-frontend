@@ -9,11 +9,12 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 const Register = () => {
   const { onRegister, onRenderLoading } = useCurrentUser();
-  const { handleSubmit, formState: { errors } } = useFormContext();
+  const { handleSubmit, formState: { errors }, reset } = useFormContext();
 
   const onSubmit = (data) => {
     onRenderLoading(true);
     onRegister(data);
+    reset({ name: '', email: '', password: '' });
 
   };
 

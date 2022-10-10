@@ -6,6 +6,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import Preloader from '../Preloader/Preloader';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import { DURATION_OF_SHORT_MOVIES } from '../../utils/constants';
 
 const Movies = () => {
 
@@ -16,27 +17,12 @@ const Movies = () => {
   const [ searchValue, setSearchValue ] = useState(null);
 
   /**
-   * Функция переключения свича короткометражек
-   */
-  const handleToggle = () => {
-    setIsCheckedSwitch(isCheckedSwitch => !isCheckedSwitch);
-    if (searchValue.length) {
-      localStorage.setItem('switch', JSON.stringify(!isCheckedSwitch));
-      if (!isCheckedSwitch) {
-        setCards(cards.filter(card => card.duration < 40));
-      } else {
-        setCards(JSON.parse(localStorage.getItem('movies')));
-      }
-    }
-  };
-
-  /**
    * Функция определения короткометражек
    * @param movie
    * @returns {boolean}
    */
   function shortMovies(movie) {
-    return movie.duration < 40;
+    return movie.duration < DURATION_OF_SHORT_MOVIES;
   }
 
   /**
@@ -99,9 +85,15 @@ const Movies = () => {
       <main className="content">
         <SearchForm
           isChecked={isCheckedSwitch}
+          setIsChecked={setIsCheckedSwitch}
           searchValue={searchValue}
+          setSearchValue={setSearchValue}
           onSubmit={handleSearch}
-          handleToggle={handleToggle}
+          movies={movies}
+          cards={cards}
+          setCards={setCards}
+          moviesLocalStorage="movies"
+          searchValueLocalStorage="searchValue"
         />
 
         {cards.length ?

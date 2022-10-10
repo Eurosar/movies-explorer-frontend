@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
+import {
+  WINDOW_WIDTH_1280,
+  WINDOW_WIDTH_1279,
+  WINDOW_WIDTH_891,
+  DESKTOP_ELEMENTS,
+  LAPTOP_ELEMENTS,
+  MOBILE_ELEMENTS
+} from '../../utils/constants';
 
 /**
  * Определим количество карточек в зависимости от размера экрана
@@ -8,12 +16,12 @@ import MoviesCard from '../MoviesCard/MoviesCard';
  */
 const resize = () => {
   let result;
-  if (window.innerWidth >= 1280) {
-    result = { count: 12, add: 3 };
-  } else if (window.innerWidth <= 1279 && window.innerWidth > 891) {
-    result = { count: 8, add: 2 };
+  if (window.innerWidth >= WINDOW_WIDTH_1280) {
+    result = DESKTOP_ELEMENTS;
+  } else if (window.innerWidth <= WINDOW_WIDTH_1279 && window.innerWidth > WINDOW_WIDTH_891) {
+    result = LAPTOP_ELEMENTS;
   } else {
-    result = { count: 5, add: 2 };
+    result = MOBILE_ELEMENTS;
   }
   return result;
 };
