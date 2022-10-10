@@ -32,9 +32,7 @@ const SavedMovies = () => {
 
     onRenderLoading(true);
     let searchResult = favoriteMovies.filter(filterMovies);
-    if (searchResult.length) {
       localStorage.setItem('favoriteMovies', JSON.stringify(searchResult));
-    }
     if (isCheckedSwitchBySavedMovies) {
       searchResult = searchResult.filter(shortMovies);
     }

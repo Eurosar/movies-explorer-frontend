@@ -42,9 +42,7 @@ const Movies = () => {
 
     onRenderLoading(true);
     let searchResult = movies.filter(filterMovies);
-    if (searchResult.length) {
-      localStorage.setItem('movies', JSON.stringify(searchResult));
-    }
+    localStorage.setItem('movies', JSON.stringify(searchResult));
     if (isCheckedSwitch) {
       searchResult = searchResult.filter(shortMovies);
     }
