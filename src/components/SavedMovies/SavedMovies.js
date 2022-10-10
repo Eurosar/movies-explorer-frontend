@@ -42,6 +42,7 @@ const SavedMovies = () => {
   }
 
   useEffect(() => {
+    localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));
     setMyCards(favoriteMovies);
   }, [ favoriteMovies ]);
 
