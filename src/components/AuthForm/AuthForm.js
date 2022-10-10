@@ -2,6 +2,7 @@ import React from 'react';
 import './AuthForm.css';
 import logo from '../../images/logo.svg';
 import { Link } from 'react-router-dom';
+import { useFormContext } from 'react-hook-form';
 
 function AuthForm(
   {
@@ -15,6 +16,8 @@ function AuthForm(
     children
   }) {
 
+  const { formState: { isValid } } = useFormContext();
+
   return (
     <div className="auth">
       <Link className="auth__link link" to="/"><img className="auth__logo" src={logo} alt="Логотип"/></Link>
@@ -23,7 +26,7 @@ function AuthForm(
         <div className="auth__inputs">
           {children}
         </div>
-        <button type="submit" className="auth__button">{buttonText}</button>
+        <button type="submit" className="auth__button" disabled={!isValid}>{buttonText}</button>
         <div className="auth__sign">
           <p className="sign__text">{signText}
             <Link to={linkTo} className="sign__link link">{linkText}</Link>

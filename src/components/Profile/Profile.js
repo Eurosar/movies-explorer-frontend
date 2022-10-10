@@ -1,32 +1,30 @@
 import React from 'react';
 import './Profile.css';
 import Header from '../Header/Header';
-import Navigation from '../Navigation/Navigation';
 import { Link } from 'react-router-dom';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import UseFormProfile from '../UseFormProfile/UseFormProfile';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
-const Profile = ({ navigationActive, navigationButtonClass, openNavigation }) => {
+
+const Profile = () => {
+
+  const { currentUser, signOut, isInfoTooltipOpen, isSuccess, onClose } = useCurrentUser();
+
   return (
     <>
-      <Header>
-        <Navigation
-          navigationActive={navigationActive}
-          navigationButtonClass={navigationButtonClass}
-          isOpen={openNavigation}
-        />
-      </Header>
+      <Header/>
       <section className="profile">
-        <h1 className="profile__title">Привет, Виталий!</h1>
-        <ul className="profile__list">
-          <li className="profile__item">
-            <p className="profile__item-text">Имя</p>
-            <p className="profile__item-text">Виталий</p></li>
-          <li className="profile__item">
-            <p className="profile__item-text">E-mail</p>
-            <p className="profile__item-text">pochta@yandex.ru</p></li>
-        </ul>
-        <button className="profile__button" type="button">Редактировать</button>
-        <Link to="/sign-in" className="profile__link link">Выйти из аккаунта</Link>
+        <h1 className="profile__title">{`Привет, ${currentUser.name}!`}</h1>
+        <UseFormProfile profileValues={currentUser}/>
+        <Link to="/" className="profile__link link" onClick={signOut}>Выйти из аккаунта</Link>
       </section>
+      <InfoTooltip
+        isOpen={isInfoTooltipOpen}
+        isSuccess={isSuccess}
+        onClose={onClose}
+        toolTipText={isSuccess ? 'Данные успешно изменились!' : 'Что-то пошло не так! Попробуйте ещё раз.'}
+      />
     </>
   );
 };

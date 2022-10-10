@@ -1,9 +1,23 @@
 import React from 'react';
 import './Register.css';
+import { useFormContext } from 'react-hook-form';
 import AuthForm from '../AuthForm/AuthForm';
 import Input from '../Input/Input';
+import EmailInput from '../EmailInput/EmailInput';
+import NameInput from '../NameInput/NameInput';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
-const Register = ({ register, onSubmit, errors }) => {
+const Register = () => {
+  const { onRegister, onRenderLoading } = useCurrentUser();
+  const { handleSubmit, formState: { errors }, reset } = useFormContext();
+
+  const onSubmit = (data) => {
+    onRenderLoading(true);
+    onRegister(data);
+    reset({ name: '', email: '', password: '' });
+
+  };
+
   return (
     <main className="content">
       <div className="register">
@@ -14,10 +28,9 @@ const Register = ({ register, onSubmit, errors }) => {
           signText="Уже зарегистрированы?"
           linkText="Войти"
           linkTo="/signin"
-          onSubmit={onSubmit}
+          onSubmit={handleSubmit(onSubmit)}
         >
-          <Input
-            register={register}
+          <NameInput
             label="Имя"
             labelClassName="auth__label"
             inputClassName="auth__input"
@@ -28,8 +41,7 @@ const Register = ({ register, onSubmit, errors }) => {
             required
           />
           <span className="auth__input-error">{errors.name?.message}</span>
-          <Input
-            register={register}
+          <EmailInput
             label="Email"
             labelClassName="auth__label"
             inputClassName="auth__input"
@@ -41,7 +53,6 @@ const Register = ({ register, onSubmit, errors }) => {
           />
           <span className="auth__input-error">{errors.email?.message}</span>
           <Input
-            register={register}
             label="Пароль"
             labelClassName="auth__label"
             inputClassName={errors.password ? 'auth__input auth__input_color_red' : 'auth__input'}

@@ -59,6 +59,14 @@
   opacity: .8;
 }
 
+.auth__button:disabled {
+  background-color: #A0A0A0;
+  cursor: default;
+}
+.auth__button:disabled:hover {
+  opacity: 1;
+}
+
 .auth__sign {
   margin: 15px 0 0 0;
   padding: 0;
