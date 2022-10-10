@@ -44,9 +44,7 @@ const SearchForm = ({
       }
     } else {
       let searchResult = movies.filter((movie) => movie.nameRU.toLowerCase().includes(changeValue.toLowerCase()));
-      if (searchResult.length) {
         localStorage.setItem(`${moviesLocalStorage}`, JSON.stringify(searchResult));
-      }
       if (!isChecked) {
         searchResult = searchResult.filter((movie) => movie.duration < DURATION_OF_SHORT_MOVIES);
       }
